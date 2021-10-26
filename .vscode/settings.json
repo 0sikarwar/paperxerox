@@ -1,0 +1,10 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#2F156E",
+    "titleBar.activeBackground": "#421D9A",
+    "titleBar.activeForeground": "#FDFCFF"
+  },
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 120
+}
