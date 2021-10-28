@@ -4,6 +4,7 @@ import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import WelcomScreen from './screens/WelcomeScreen';
+import AccountScreen from './screens/AccountScreen';
 import Styles from './styles/GlobalStyles';
 
 const Stack = createNativeStackNavigator();
@@ -28,9 +29,14 @@ const Navigations = () => {
             options={{title: 'Welcome'}}
           />
           <Stack.Screen
+            name="account"
+            component={AccountScreen}
+            options={{title: 'User'}}
+          />
+          <Stack.Screen
             name="home"
             component={HomeScreen}
-            options={{title: 'Welcome'}}
+            options={{title: 'Home'}}
           />
         </Stack.Navigator>
       </View>

@@ -9,4 +9,16 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     height: '100%',
   },
+  shadowBox: {
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#171717',
+    shadowOffset: {width: 2, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderRadius: 8,
+    paddingVertical: 3,
+    paddingHorizontal: 10,
+    width: '100%',
+    elevation: 20,
+  },
 });

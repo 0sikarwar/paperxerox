@@ -1,22 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import Styles, {welcomeImage} from './style';
-import {useNavigation} from '@react-navigation/native';
 import {Heading1, Text} from '../../components/NativeComponents/Text';
-import Modal from '../../components/NativeComponents/Modal';
 import Button from '../../components/NativeComponents/Button';
 import {primaryColor, secondaryColor} from '../../styles/Color';
-import SignIn from '../../components/SignIn';
 import {common} from '../commonInterfaces';
+import {useAppContext} from '../../context/AppContext';
+
 interface welcomeScreenProps extends common {}
+
 const WelcomScreen: React.FC<welcomeScreenProps> = props => {
-  const [activeTabName, setActiveTabName] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const {
+    Actions: {showSignIn},
+  } = useAppContext();
   const handleSignInUpClick = (name: string) => {
-    setActiveTabName(name);
-    setShowModal(true);
+    showSignIn(name);
   };
-  console.log(`props`, props);
   return (
     <>
       <View style={Styles.imageContainer}>
@@ -56,15 +55,6 @@ const WelcomScreen: React.FC<welcomeScreenProps> = props => {
           <Text style={{color: primaryColor}}> The Terms and Conditions</Text>{' '}
           and <Text style={{color: primaryColor}}>Privacy Policy</Text>.
         </Text>
-        <Modal
-          showModal={showModal}
-          onRequestClose={() => setShowModal(false)}
-          slideFrom="bottom">
-          <SignIn
-            activeTabName={activeTabName}
-            setActiveTabName={setActiveTabName}
-          />
-        </Modal>
       </View>
     </>
   );

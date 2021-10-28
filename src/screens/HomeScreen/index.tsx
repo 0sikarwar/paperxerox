@@ -1,13 +1,19 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
+import BottomCards from '../../components/BottomCards';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import {Heading1} from '../../components/NativeComponents/Text';
+import TopCards from '../../components/TopCards';
 
 const HomeScreen = () => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Header />
-      <Heading1>Test</Heading1>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <TopCards />
+        <BottomCards />
+      </ScrollView>
+      <Footer />
     </View>
   );
 };

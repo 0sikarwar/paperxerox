@@ -1,40 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
-import Modal from '../NativeComponents/Modal';
-import {Text} from '../NativeComponents/Text';
-import SignIn from '../SignIn';
-import {menuIcon} from './styles';
+import {useAppContext} from '../../context/AppContext';
+import Styles, {menuIcon} from './styles';
 const Header = () => {
-  const [showSideMenu, setShowSideMenu] = useState(false);
-  const [activeTabName, setActiveTabName] = useState('');
-  const handleSigninClick = () => {
-    setShowSideMenu(false);
-    setActiveTabName('login');
-  };
+  const {
+    Actions: {showSideMenu},
+  } = useAppContext();
   return (
     <>
-      <View>
-        <TouchableOpacity onPress={() => setShowSideMenu(true)}>
+      <View style={Styles.headerContainer}>
+        <TouchableOpacity onPress={showSideMenu}>
           <Image source={menuIcon} />
         </TouchableOpacity>
       </View>
-      <Modal
-        showModal={showSideMenu}
-        onRequestClose={() => setShowSideMenu(false)}
-        slideFrom="left">
-        <TouchableOpacity onPress={handleSigninClick}>
-          <Text>Login/Register</Text>
-        </TouchableOpacity>
-      </Modal>
-      <Modal
-        showModal={!!activeTabName}
-        onRequestClose={() => setActiveTabName('')}
-        slideFrom="bottom">
-        <SignIn
-          activeTabName={activeTabName}
-          setActiveTabName={setActiveTabName}
-        />
-      </Modal>
     </>
   );
 };
