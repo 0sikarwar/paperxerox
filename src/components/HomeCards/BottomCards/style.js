@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import NewsPaper from './defaultNewsPaper.png';
-import GlobalStyles from '../../styles/GlobalStyles';
+import GlobalStyles from '../../../styles/GlobalStyles';
 
 export const defaultPaper = NewsPaper;
 

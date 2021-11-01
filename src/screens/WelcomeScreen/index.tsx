@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import Styles, {welcomeImage} from './style';
 import {Heading1, Text} from '../../components/NativeComponents/Text';
@@ -6,6 +6,7 @@ import Button from '../../components/NativeComponents/Button';
 import {primaryColor, secondaryColor} from '../../styles/Color';
 import {common} from '../commonInterfaces';
 import {useAppContext} from '../../context/AppContext';
+import {addInStorage} from '../../utils';
 
 interface welcomeScreenProps extends common {}
 
@@ -16,12 +17,16 @@ const WelcomScreen: React.FC<welcomeScreenProps> = props => {
   const handleSignInUpClick = (name: string) => {
     showSignIn(name);
   };
+  const handleSkipClick = () => {
+    props.navigation.navigate('home');
+    addInStorage('skipWelcome', 'true');
+  };
   return (
     <>
       <View style={Styles.imageContainer}>
         <TouchableOpacity
           style={Styles.skipTextContainer}
-          onPress={() => props.navigation.navigate('home')}>
+          onPress={handleSkipClick}>
           <Text style={Styles.skipText}> Skip</Text>
         </TouchableOpacity>
         <Image source={welcomeImage} style={Styles.image} />

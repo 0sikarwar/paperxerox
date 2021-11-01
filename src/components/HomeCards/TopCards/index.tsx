@@ -1,8 +1,8 @@
 import React from 'react';
 import {Image, ScrollView, View} from 'react-native';
-import {primaryColor} from '../../styles/Color';
-import Button from '../NativeComponents/Button';
-import {Heading1, Text} from '../NativeComponents/Text';
+import {primaryColor} from '../../../styles/Color';
+import Button from '../../NativeComponents/Button';
+import {Heading1, Text} from '../../NativeComponents/Text';
 import TopCard from './TopCard';
 import Styles from './style';
 

@@ -9,7 +9,11 @@ const AppContext = createContext<{state: any; dispatch: Dispatch} | undefined>(
 );
 
 const ContextProvider: React.FC = ({children}) => {
-  const initialState = {};
+  const initialState = {
+    showWelcomeScr: true,
+    showScreenLoader: true,
+    isHindi: true,
+  };
   const [state, dispatch] = useReducer(appReducer, initialState);
   const value = {state, dispatch};
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

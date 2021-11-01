@@ -20,8 +20,8 @@ const Footer = () => {
         <TouchableOpacity onPress={() => handleNavigationClick('home')}>
           <HomeLogo width={40} height={40} isFill={activeScreen === 'home'} />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <ListLogo width={40} height={40} isFill={false} />
+        <TouchableOpacity onPress={() => handleNavigationClick('news')}>
+          <ListLogo width={40} height={40} isFill={activeScreen === 'news'} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNavigationClick('account')}>
           <UserLogo

@@ -1,9 +1,9 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
-import BottomCards from '../../components/BottomCards';
+import BottomCards from '../../components/HomeCards/BottomCards';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import TopCards from '../../components/TopCards';
+import TopCards from '../../components/HomeCards/TopCards';
 
 const HomeScreen = () => {
   return (

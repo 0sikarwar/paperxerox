@@ -1,11 +1,16 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {useEffect} from 'react';
+import {ActivityIndicator, View} from 'react-native';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import WelcomScreen from './screens/WelcomeScreen';
 import AccountScreen from './screens/AccountScreen';
 import Styles from './styles/GlobalStyles';
+import NewsScreen from './screens/NewsScreen';
+import WebviewScreen from './screens/WebviewScreen';
+import {appInit} from './utils';
+import {useAppContext} from './context/AppContext';
+import {primaryColor} from './styles/Color';
 
 const Stack = createNativeStackNavigator();
 const navigatorTheme = {
@@ -16,6 +21,21 @@ const navigatorTheme = {
   },
 };
 const Navigations = () => {
+  const {
+    Actions: {setFeedsData, setWelcomeScreenFlag, setScreenLoader},
+    state,
+  } = useAppContext();
+  useEffect(() => {
+    appInit(setFeedsData, setWelcomeScreenFlag, setScreenLoader);
+  }, []);
+  if (state.showScreenLoader)
+    return (
+      <ActivityIndicator
+        size="large"
+        style={Styles.screenLoader}
+        color={primaryColor}
+      />
+    );
   return (
     <NavigationContainer theme={navigatorTheme}>
       <View style={Styles.ScreenViewArea}>
@@ -23,10 +43,22 @@ const Navigations = () => {
           screenOptions={{
             headerShown: false,
           }}>
+          {state.showWelcomeScr && (
+            <Stack.Screen
+              name="welcome"
+              component={WelcomScreen}
+              options={{title: 'Welcome'}}
+            />
+          )}
           <Stack.Screen
-            name="welcome"
-            component={WelcomScreen}
-            options={{title: 'Welcome'}}
+            name="home"
+            component={HomeScreen}
+            options={{title: 'Home'}}
+          />
+          <Stack.Screen
+            name="news"
+            component={NewsScreen}
+            options={{title: 'News'}}
           />
           <Stack.Screen
             name="account"
@@ -34,9 +66,9 @@ const Navigations = () => {
             options={{title: 'User'}}
           />
           <Stack.Screen
-            name="home"
-            component={HomeScreen}
-            options={{title: 'Home'}}
+            name="webview"
+            component={WebviewScreen}
+            options={{title: 'User'}}
           />
         </Stack.Navigator>
       </View>

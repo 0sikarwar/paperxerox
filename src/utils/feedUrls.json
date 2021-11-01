@@ -1,0 +1,31 @@
+{
+  "hindiRssFeed": {
+    "top": {
+      "url": "https://www.amarujala.com/rss/editors-pick.xml",
+      "srcName": "Amar Ujala"
+    },
+    "breaking": {
+      "url": "https://hindi.firstpost.com/rss/india.xml",
+      "srcName": "Hindi Firstpost"
+    },
+    "city": {
+      "url": "https://www.amarujala.com/rss/panchkula.xml",
+      "url2": "https://www.amarujala.com/rss/chandigarh.xml",
+      "srcName": "Amar Ujala"
+    }
+  },
+  "englishRssFeed": {
+    "top": {
+      "url": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
+      "srcName": "Times of India"
+    },
+    "breaking": {
+      "url": "https://www.thehindu.com/news/national/feeder/default.rss",
+      "srcName": "The Hindu"
+    },
+    "city": {
+      "url": "https://timesofindia.indiatimes.com/rssfeeds/-2128816762.cms",
+      "srcName": "Times of India"
+    }
+  }
+}

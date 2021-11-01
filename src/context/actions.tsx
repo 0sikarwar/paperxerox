@@ -7,6 +7,12 @@ const actions = (dispatch: Function) => {
     hideSignIn: () => dispatch({type: 'hideSignIn'}),
     showSideMenu: () => dispatch({type: 'showSideMenu'}),
     hideSideMenu: () => dispatch({type: 'hideSideMenu'}),
+    setWelcomeScreenFlag: (value: boolean) =>
+      dispatch({type: 'setWelcomeScreenFlag', value}),
+    setFeedsData: (value: any) => dispatch({type: 'setFeedsData', value}),
+    setScreenLoader: (value: boolean) =>
+      dispatch({type: 'setScreenLoader', value}),
+    setIsHindi: (value: boolean) => dispatch({type: 'setIsHindi', value}),
   };
 };
 

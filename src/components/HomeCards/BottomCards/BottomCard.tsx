@@ -1,8 +1,8 @@
 import React from 'react';
 import {Image, View} from 'react-native';
-import {primaryColor} from '../../styles/Color';
-import Button from '../NativeComponents/Button';
-import {Text} from '../NativeComponents/Text';
+import {primaryColor} from '../../../styles/Color';
+import Button from '../../NativeComponents/Button';
+import {Text} from '../../NativeComponents/Text';
 import Styles, {defaultPaper} from './style';
 
 const BottomCard = () => {

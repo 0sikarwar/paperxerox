@@ -1,5 +1,4 @@
 const appReducer = (state: object, action: {type: string; value?: any}) => {
-  console.log({state, action});
   switch (action.type) {
     case 'showSignIn':
       return {
@@ -18,6 +17,14 @@ const appReducer = (state: object, action: {type: string; value?: any}) => {
       return {...state, isShowingMenu: true};
     case 'hideSideMenu':
       return {...state, isShowingMenu: false};
+    case 'setWelcomeScreenFlag':
+      return {...state, showWelcomeScr: action.value};
+    case 'setFeedsData':
+      return {...state, feedsData: action.value};
+    case 'setScreenLoader':
+      return {...state, showScreenLoader: action.value};
+    case 'setIsHindi':
+      return {...state, isHindi: action.value};
     default:
       return state;
   }

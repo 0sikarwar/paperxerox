@@ -21,4 +21,8 @@ export default StyleSheet.create({
     width: '100%',
     elevation: 20,
   },
+  screenLoader: {
+    flex: 1,
+    justifyContent: 'center',
+  },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Heading1, Text} from '../NativeComponents/Text';
+import {Heading1, Text} from '../../NativeComponents/Text';
 import BottomCard from './BottomCard';
 import Styles from './style';
 const BottomCards = () => {

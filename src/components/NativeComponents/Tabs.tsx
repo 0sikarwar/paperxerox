@@ -7,6 +7,7 @@ import styles from './style';
 interface tabType {
   label: string;
   name: string;
+  [key: string]: string;
 }
 interface tapProps {
   tabList: Array<tabType>;
@@ -17,6 +18,7 @@ interface tapProps {
   showUnderLineOnActive?: boolean;
   underLineColor?: string;
   activeTabName?: string;
+  labelKeyName?: string;
 }
 
 const Tabs: React.FC<tapProps> = ({
@@ -28,6 +30,7 @@ const Tabs: React.FC<tapProps> = ({
   showUnderLineOnActive,
   underLineColor,
   activeTabName,
+  labelKeyName,
 }) => {
   return (
     <View style={{}}>
@@ -41,7 +44,7 @@ const Tabs: React.FC<tapProps> = ({
                   tabStyle,
                   activeTabName === item.name && activeTabStyle,
                 ]}>
-                {item.label}
+                {item[labelKeyName ? labelKeyName : 'label']}
               </Text>
               {showUnderLineOnActive && activeTabName === item.name && (
                 <DeviderHr width="60%" height={2} color={underLineColor} />
