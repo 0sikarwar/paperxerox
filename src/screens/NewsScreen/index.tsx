@@ -7,7 +7,7 @@ import {Text} from '../../components/NativeComponents/Text';
 import NewsCards from '../../components/NewsCards';
 import {useAppContext} from '../../context/AppContext';
 import {primaryColor} from '../../styles/Color';
-import {getDataFromStorage, getFeeds} from '../../utils';
+import {getFeeds} from '../../utils/feedsHelper';
 import {common} from '../commonInterfaces';
 interface newsScreenProps extends common {}
 const tabs = [

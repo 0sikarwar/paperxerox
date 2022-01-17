@@ -12,7 +12,9 @@ const Footer = () => {
   const RoutesArr = navigation.getState().routes;
   const activeScreen = RoutesArr[RoutesArr.length - 1].name;
   const handleNavigationClick = (name: string) => {
-    navigation.push(name);
+    if (activeScreen !== name) {
+      navigation.push(name);
+    }
   };
   return (
     <>

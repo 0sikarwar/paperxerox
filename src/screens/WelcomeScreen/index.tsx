@@ -47,7 +47,7 @@ const WelcomScreen: React.FC<welcomeScreenProps> = props => {
           style={Styles.button}
         />
         <Button
-          title="Lognin"
+          title="Login"
           onPress={() => {
             handleSignInUpClick('login');
           }}

@@ -17,9 +17,9 @@ const HomeLogo: React.FC<svgProps> = ({width, height, color, isFill}) => {
       <Path
         d="M24 22.5C20.685 24.4995 15.312 24.4995 12 22.5"
         stroke={isFill ? 'white' : '#4B5563'}
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </Svg>
   );

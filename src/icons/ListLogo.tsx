@@ -17,37 +17,37 @@ const ListLogo: React.FC<svgProps> = ({width, height, color, isFill}) => {
       <Path
         d="M13.5 18.001H22.5"
         stroke={isFill ? 'white' : '#4B5563'}
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <Path
         d="M13.5 22.501H22.5"
         stroke={isFill ? 'white' : '#4B5563'}
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <Path
         d="M11.25 3.37598V7.87598"
         stroke={isFill ? 'white' : '#4B5563'}
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <Path
         d="M18 3.37598V7.87598"
         stroke={isFill ? 'white' : '#4B5563'}
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <Path
         d="M24.75 3.37598V7.87598"
         stroke={isFill ? 'white' : '#4B5563'}
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </Svg>
   );

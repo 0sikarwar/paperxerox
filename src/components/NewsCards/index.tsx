@@ -1,10 +1,10 @@
 import {useNavigation} from '@react-navigation/core';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {FlatList, ScrollView} from 'react-native';
+import React from 'react';
+import {FlatList} from 'react-native';
+import {common} from '../../screens/commonInterfaces';
 import NewsCard from './NewsCard';
 import Styles from './style';
-interface newsCardsProps {
+interface newsCardsProps extends common {
   feeds: {
     feed?: Array<any>;
     srcName?: string;
@@ -12,68 +12,72 @@ interface newsCardsProps {
   isHindi?: boolean;
   activeNewsTab: string;
 }
-const NewsCards: React.FC<newsCardsProps> = ({
-  feeds,
-  isHindi,
-  activeNewsTab,
-}) => {
-  const listRef = useRef<FlatList>(null);
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const [totalVisibleItem, setTotalVisibleItem] = useState(10);
-  const handleCardPress = (link: string) => {
-    navigation.navigate('webview', {link});
+interface newCardsState {
+  totalVisibleItem: number;
+  refreshingList: boolean;
+}
+class NewsCards extends React.Component<newsCardsProps, newCardsState> {
+  listRef: any;
+  constructor(props: newsCardsProps) {
+    super(props);
+    this.state = {
+      totalVisibleItem: 10,
+      refreshingList: false,
+    };
+    this.listRef = React.createRef();
+  }
+  handleCardPress = (link: string) => {
+    this.props.navigation.navigate('webview', {link});
   };
-  useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollToIndex({index: 0});
-    }
-  }, [isHindi, activeNewsTab]);
-  const handleListEndReached = e => {
-    console.log(`end EDDDDDD`, e);
-  };
-  const updateTotalVisibleItem = (viewableItems: any) => {
+  onViewableItemsChanged = ({viewableItems}: any) => {
     const lastItemIndex = viewableItems[viewableItems.length - 1]?.index;
-    if (lastItemIndex === totalVisibleItem - 3) {
-      setTotalVisibleItem(lastItemIndex + 12);
+    if (lastItemIndex === this.state.totalVisibleItem - 9) {
+      this.setState({totalVisibleItem: lastItemIndex + 20});
     }
-    console.log(lastItemIndex, totalVisibleItem);
   };
-  const onViewableItemsChanged = useCallback(({viewableItems}) => {
-    updateTotalVisibleItem(viewableItems);
-  }, []);
-  console.log(`totalVisibleItem`, totalVisibleItem);
-  return (
-    <>
-      {/* <ScrollView contentContainerStyle={Styles.newsCardContainer}>
-        {feeds.feed?.map((item: object, index: number) => (
-          <NewsCard
-            item={item}
-            src={feeds.srcName}
-            key={`${feeds.srcName}_${index}`}
-            // @ts-ignore
-            onPress={() => handleCardPress(item.link[0])}
-          />
-        ))}
-      </ScrollView> */}
+  componentDidUpdate(prevProps: newsCardsProps) {
+    if (
+      this.listRef.current &&
+      (prevProps.isHindi !== this.props.isHindi ||
+        prevProps.activeNewsTab !== this.props.activeNewsTab)
+    ) {
+      this.listRef.current.scrollToIndex({index: 0});
+    }
+  }
+  renderItem = ({item}: any) => (
+    <NewsCard
+      item={item}
+      src={this.props.feeds.srcName}
+      onPress={() => this.handleCardPress(item.link[0])}
+    />
+  );
+  handleRefresh = () => {
+    this.setState({refreshingList: true});
+  };
+  render() {
+    return (
       <FlatList
-        data={feeds.feed ? [...feeds.feed.slice(0, totalVisibleItem)] : null}
-        ref={listRef}
+        data={
+          this.props.feeds.feed
+            ? [...this.props.feeds.feed.slice(0, this.state.totalVisibleItem)]
+            : null
+        }
+        ref={this.listRef}
         initialNumToRender={5}
-        onEndReached={handleListEndReached}
-        onViewableItemsChanged={onViewableItemsChanged}
+        maxToRenderPerBatch={8}
+        onViewableItemsChanged={this.onViewableItemsChanged}
         viewabilityConfig={{itemVisiblePercentThreshold: 100}}
         onEndReachedThreshold={2}
         removeClippedSubviews
-        renderItem={({item}) => (
-          <NewsCard
-            item={item}
-            src={feeds.srcName}
-            onPress={() => handleCardPress(item.link[0])}
-          />
-        )}
+        renderItem={this.renderItem}
+        // onRefresh={this.handleRefresh}
+        // refreshing={this.state.refreshingList}
       />
-    </>
-  );
-};
+    );
+  }
+}
 
-export default NewsCards;
+export default function (props: any) {
+  const navigation = useNavigation();
+  return <NewsCards {...props} navigation={navigation} />;
+}

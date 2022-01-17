@@ -8,7 +8,7 @@ import AccountScreen from './screens/AccountScreen';
 import Styles from './styles/GlobalStyles';
 import NewsScreen from './screens/NewsScreen';
 import WebviewScreen from './screens/WebviewScreen';
-import {appInit} from './utils';
+import {appInit} from './utils/feedsHelper';
 import {useAppContext} from './context/AppContext';
 import {primaryColor} from './styles/Color';
 
@@ -68,7 +68,7 @@ const Navigations = () => {
           <Stack.Screen
             name="webview"
             component={WebviewScreen}
-            options={{title: 'User'}}
+            options={{title: 'News'}}
           />
         </Stack.Navigator>
       </View>

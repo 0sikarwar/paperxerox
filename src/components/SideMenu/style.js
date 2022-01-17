@@ -1,7 +1,5 @@
 import {StyleSheet} from 'react-native';
-import userImg from './user.png';
 import GlobalStyles from '../../styles/GlobalStyles';
-export const defaultUserImg = userImg;
 
 export default StyleSheet.create({
   sideBarContainer: {},
@@ -14,11 +12,33 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  userImageContainer: {},
-  userImage: {
-    width: 60,
-    height: 60,
-    marginRight: 20,
-    borderRadius: 60 / 2,
+  listGroup: {
+    paddingHorizontal: 5,
+  },
+  listGroupItem: {
+    justifyContent: 'space-between',
+  },
+  listLogoContainer: {
+    paddingVertical: 12,
+    marginHorizontal: 10,
+  },
+  profileBlock: {
+    marginBottom: 40,
+  },
+  profileBlockLogoContainer: {
+    marginRight: 10,
+  },
+  logoutBtnContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+  logoutBtn: {
+    ...GlobalStyles.shadowBox,
+    borderRadius: 12,
+    height: 40,
+    paddingVertical: 10,
+    width: 120,
   },
 });
