@@ -97,5 +97,4 @@ export const getFeeds = async (currFeedData: any, setFeedsData: Function) => {
   };
   setFeedsData(feedData);
   addInStorage('feedData', feedData);
-  console.log('FEEDS DATA SUCCESS', feedData);
 };

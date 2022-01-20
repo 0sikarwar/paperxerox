@@ -23,7 +23,7 @@ export default StyleSheet.create({
     marginHorizontal: 10,
   },
   profileBlock: {
-    marginBottom: 40,
+    marginBottom: 20,
   },
   profileBlockLogoContainer: {
     marginRight: 10,

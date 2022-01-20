@@ -1,6 +1,5 @@
-import {StyleSheet, Dimensions} from 'react-native';
-let deviceHeight = Dimensions.get('window').height;
-let deviceWidth = Dimensions.get('window').width;
+import {StyleSheet} from 'react-native';
+import {deviceHeight, deviceWidth} from '../../styles/GlobalStyles';
 export default StyleSheet.create({
   animatedViewContainer: {
     height: deviceHeight,

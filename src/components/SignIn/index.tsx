@@ -9,6 +9,7 @@ import Button from '../NativeComponents/Button';
 import {Input} from '../NativeComponents/Input';
 import Modal from '../NativeComponents/Modal';
 import Tabs from '../NativeComponents/Tabs';
+import {Text} from '../NativeComponents/Text';
 import styles from './style';
 
 interface formValueType {
@@ -31,7 +32,13 @@ const INITIAL_ERROR_OBJ = {
 const SignIn: React.FC = props => {
   const {
     state: {isShowingSignInModal, signModalActiveTabName},
-    Actions: {setActiveSignModalTabName, hideSignIn, setScreenLoader},
+    Actions: {
+      setActiveSignModalTabName,
+      hideSignIn,
+      setScreenLoader,
+      showSignIn,
+      setUserDetails,
+    },
   } = useAppContext();
   const [formValue, setFormValue] = useState<formValueType>({
     name: '',
@@ -39,6 +46,7 @@ const SignIn: React.FC = props => {
     password: '',
     password1: '',
   });
+  const [errorMsg, setErrorMsg] = useState('');
   const [formErr, setFormErr] = useState(INITIAL_ERROR_OBJ);
 
   useEffect(() => {
@@ -53,6 +61,9 @@ const SignIn: React.FC = props => {
     temp.password = '';
     setFormErr(INITIAL_ERROR_OBJ);
     setFormValue({...temp});
+    if (errorMsg) {
+      setErrorMsg('');
+    }
   }, [signModalActiveTabName]);
 
   const handleChange = (name: string, value: string) => {
@@ -62,6 +73,9 @@ const SignIn: React.FC = props => {
         ...formErr,
         [name]: false,
       });
+    }
+    if (errorMsg) {
+      setErrorMsg('');
     }
     setFormValue({
       ...formValue,
@@ -92,12 +106,21 @@ const SignIn: React.FC = props => {
   const handleSubmit = async () => {
     if (validateInputs()) {
       setScreenLoader(true);
-      const test = await usePost(
+      hideSignIn();
+      const res = await usePost(
         signModalActiveTabName === 'create' ? registerUrl : signinUrl,
         formValue,
       );
+      console.log('signin/create res', res);
+      if (!res.success) {
+        setErrorMsg(res.msg);
+        setFormErr({...formErr, [res.errField]: true});
+        showSignIn(signModalActiveTabName);
+      } else {
+        setUserDetails(res.userDetails);
+      }
+
       setScreenLoader(false);
-      console.log(`test`, test);
     }
   };
 
@@ -144,6 +167,7 @@ const SignIn: React.FC = props => {
             placeholder="**** **** ****"
             value={formValue.password}
             onChange={handleChange}
+            error={formErr.password}
             secureTextEntry
           />
           {signModalActiveTabName === 'create' && (
@@ -157,6 +181,7 @@ const SignIn: React.FC = props => {
               secureTextEntry
             />
           )}
+          {!!errorMsg && <Text color="red">{errorMsg}</Text>}
           <Button
             title={
               signModalActiveTabName === 'create' ? 'Registration' : 'Login'

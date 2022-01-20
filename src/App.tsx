@@ -16,15 +16,11 @@ const navigatorTheme = {
 };
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={Styles.AndroidSafeArea}>
-      <ContextProvider>
-        <NavigationContainer theme={navigatorTheme}>
-          <Navigations />
-          <SignIn />
-          <SideMenu />
-        </NavigationContainer>
-      </ContextProvider>
-    </SafeAreaView>
+    <ContextProvider>
+      <NavigationContainer theme={navigatorTheme}>
+        <Navigations />
+      </NavigationContainer>
+    </ContextProvider>
   );
 };
 

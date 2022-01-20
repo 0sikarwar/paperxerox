@@ -23,8 +23,15 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     width: '100%',
   },
-  screenLoader: {
-    flex: 1,
+  overlay: {
+    position: 'absolute',
+    backgroundColor: '#fff',
+    top: 0,
+    alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 2,
+    elevation: 2,
+    width: deviceWidth,
+    height: deviceHeight,
   },
 });

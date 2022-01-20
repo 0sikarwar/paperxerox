@@ -10,6 +10,7 @@ interface headerProps {
   showBackBtn?: Boolean;
   activeScreen: string;
   title?: string;
+  setActiveScreen?: Function;
 }
 interface newsRightCompProps {
   isHindi: boolean;
@@ -40,6 +41,11 @@ const Header: React.FC<headerProps> = ({showBackBtn, title, activeScreen}) => {
       <NewsHeaderRightComp isHindi={state.isHindi} setIsHindi={setIsHindi} />
     );
   }
+  const handleBackBtnClick = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
+  };
   return (
     <>
       <View style={Styles.headerContainer}>
@@ -48,8 +54,7 @@ const Header: React.FC<headerProps> = ({showBackBtn, title, activeScreen}) => {
             <Image source={menuIcon} />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity
-            onPress={() => navigation.canGoBack() && navigation.goBack()}>
+          <TouchableOpacity onPress={handleBackBtnClick}>
             <BackArrowLogo />
           </TouchableOpacity>
         )}

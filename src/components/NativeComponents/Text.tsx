@@ -35,3 +35,17 @@ export const Heading1: React.FC<textProps> = ({
     </TextRN>
   );
 };
+export const Heading2: React.FC<textProps> = ({
+  style,
+  children,
+  color,
+  ...rest
+}) => {
+  return (
+    <TextRN
+      style={[ComponentStyle.heading2, style, color ? {color: color} : {}]}
+      {...rest}>
+      {children}
+    </TextRN>
+  );
+};

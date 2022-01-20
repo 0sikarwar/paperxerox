@@ -10,6 +10,11 @@ export default StyleSheet.create({
     fontWeight: '600',
     paddingVertical: 10,
   },
+  heading2: {
+    fontSize: 18,
+    fontWeight: '600',
+    paddingVertical: 8,
+  },
   button: {
     paddingVertical: 20,
     paddingHorizontal: 30,

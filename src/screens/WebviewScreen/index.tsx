@@ -1,14 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {WebView} from 'react-native-webview';
 import Header from '../../components/Header';
+import {useAppContext} from '../../context/AppContext';
 import {common} from '../commonInterfaces';
 interface webviewScreenProps extends common {}
 
 const WebviewScreen: React.FC<webviewScreenProps> = props => {
+  const {
+    state,
+    Actions: {setActiveScreen},
+  } = useAppContext();
+  useEffect(() => {
+    const activeScr = state.activeScreen;
+    setActiveScreen('webview');
+    return () => {
+      setActiveScreen(activeScr);
+    };
+  }, []);
   if (!props.route?.params?.link) return null;
   return (
     <>
-      <Header showBackBtn title="NEWS" />
       <WebView
         javaScriptEnabled={true}
         scalesPageToFit

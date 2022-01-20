@@ -6,10 +6,16 @@ import Styles from './style';
 interface listItemProps {
   onPress?: (event: GestureResponderEvent) => void;
   style?: object;
+  disabled?: boolean;
 }
-const ListItem: React.FC<listItemProps> = ({children, onPress, style}) => {
+const ListItem: React.FC<listItemProps> = ({
+  children,
+  onPress,
+  style,
+  disabled,
+}) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={disabled}>
       <View style={[Styles.listItem, style]}>{children}</View>
     </TouchableOpacity>
   );

@@ -13,6 +13,9 @@ const actions = (dispatch: Function) => {
     setScreenLoader: (value: boolean) =>
       dispatch({type: 'setScreenLoader', value}),
     setIsHindi: (value: boolean) => dispatch({type: 'setIsHindi', value}),
+    setUserDetails: (value: any) => dispatch({type: 'setUserDetails', value}),
+    setActiveScreen: (value: string) =>
+      dispatch({type: 'setActiveScreen', value}),
   };
 };
 

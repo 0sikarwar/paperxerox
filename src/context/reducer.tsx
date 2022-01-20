@@ -25,6 +25,10 @@ const appReducer = (state: object, action: {type: string; value?: any}) => {
       return {...state, showScreenLoader: action.value};
     case 'setIsHindi':
       return {...state, isHindi: action.value};
+    case 'setUserDetails':
+      return {...state, userDetails: action.value};
+    case 'setActiveScreen':
+      return {...state, activeScreen: action.value};
     default:
       return state;
   }

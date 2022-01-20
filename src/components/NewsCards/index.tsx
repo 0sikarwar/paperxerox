@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {FlatList} from 'react-native';
+import {useAppContext} from '../../context/AppContext';
 import {common} from '../../screens/commonInterfaces';
 import NewsCard from './NewsCard';
 import Styles from './style';
@@ -11,6 +12,7 @@ interface newsCardsProps extends common {
   };
   isHindi?: boolean;
   activeNewsTab: string;
+  setActiveScreen: Function;
 }
 interface newCardsState {
   totalVisibleItem: number;
@@ -28,6 +30,7 @@ class NewsCards extends React.Component<newsCardsProps, newCardsState> {
   }
   handleCardPress = (link: string) => {
     this.props.navigation.navigate('webview', {link});
+    this.props.setActiveScreen('webview');
   };
   onViewableItemsChanged = ({viewableItems}: any) => {
     const lastItemIndex = viewableItems[viewableItems.length - 1]?.index;
@@ -79,5 +82,15 @@ class NewsCards extends React.Component<newsCardsProps, newCardsState> {
 
 export default function (props: any) {
   const navigation = useNavigation();
-  return <NewsCards {...props} navigation={navigation} />;
+  const {
+    state,
+    Actions: {setActiveScreen},
+  } = useAppContext();
+  return (
+    <NewsCards
+      {...props}
+      navigation={navigation}
+      setActiveScreen={setActiveScreen}
+    />
+  );
 }
