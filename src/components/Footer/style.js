@@ -1,14 +1,13 @@
 import {StyleSheet} from 'react-native';
-import GlobalStyles from '../../styles/GlobalStyles';
+import {deviceWidth} from '../../styles/GlobalStyles';
 
 export default StyleSheet.create({
   footer: {
-    ...GlobalStyles.shadowBox,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
-    width: '100%',
+    width: deviceWidth,
     height: 50,
     display: 'flex',
     justifyContent: 'space-evenly',
@@ -18,6 +17,8 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     zIndex: 1,
+    borderColor: '#cfcbcb',
+    borderTopWidth: 0.3,
   },
   footerFake: {
     height: 50,

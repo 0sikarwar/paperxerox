@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity, View} from 'react-native';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import {View} from 'react-native';
 import Tabs from '../../components/NativeComponents/Tabs';
-import {Text} from '../../components/NativeComponents/Text';
 import NewsCards from '../../components/NewsCards';
 import {useAppContext} from '../../context/AppContext';
 import {primaryColor} from '../../styles/Color';
@@ -19,7 +16,7 @@ const NewsScreen: React.FC<newsScreenProps> = props => {
   const [activeNewsTab, setActiveNewsTab] = useState('top');
   const {
     state,
-    Actions: {setIsHindi, setFeedsData},
+    Actions: {setFeedsData},
   } = useAppContext();
   const [feeds, setFeeds] = useState({});
   useEffect(() => {
@@ -34,18 +31,8 @@ const NewsScreen: React.FC<newsScreenProps> = props => {
     }
     setFeeds(currentFeed);
   }, [activeNewsTab, state.isHindi]);
-  function headerRightComp() {
-    return (
-      <TouchableOpacity onPress={() => setIsHindi(!state.isHindi)}>
-        <Text color={primaryColor}>
-          {state.isHindi ? 'Read in English' : 'हिंदी में पढ़ें'}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
   return (
     <View style={{flex: 1}}>
-      <Header rightComponent={headerRightComp} />
       <View>
         <Tabs
           tabList={tabs}
@@ -64,7 +51,6 @@ const NewsScreen: React.FC<newsScreenProps> = props => {
           activeNewsTab={activeNewsTab}
         />
       )}
-      <Footer />
     </View>
   );
 };

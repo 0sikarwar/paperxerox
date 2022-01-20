@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
@@ -7,13 +7,16 @@ import ListLogo from '../../icons/ListLogo';
 import UserLogo from '../../icons/UserLogo';
 import Styles from './style';
 
-const Footer = () => {
+interface footerPropType {
+  activeScreen: string;
+  setActiveScreen: Function;
+}
+const Footer: React.FC<footerPropType> = ({activeScreen, setActiveScreen}) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const RoutesArr = navigation.getState().routes;
-  const activeScreen = RoutesArr[RoutesArr.length - 1].name;
   const handleNavigationClick = (name: string) => {
     if (activeScreen !== name) {
-      navigation.push(name);
+      navigation.navigate(name);
+      setActiveScreen(name);
     }
   };
   return (

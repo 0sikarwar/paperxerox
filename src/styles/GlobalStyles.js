@@ -1,4 +1,7 @@
-import {StyleSheet, Platform, StatusBar} from 'react-native';
+import {StyleSheet, Platform, StatusBar, Dimensions} from 'react-native';
+
+export const deviceWidth = Dimensions.get('window').width;
+export const deviceHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   AndroidSafeArea: {
@@ -19,7 +22,6 @@ export default StyleSheet.create({
     paddingVertical: 3,
     paddingHorizontal: 10,
     width: '100%',
-    elevation: 20,
   },
   screenLoader: {
     flex: 1,

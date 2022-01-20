@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  TextInput,
-  View,
-  TextInputProps,
-  TextInputChangeEventData,
-  NativeSyntheticEvent,
-} from 'react-native';
+import {TextInput, View, TextInputProps} from 'react-native';
 import styles from './style';
 import {Text} from './Text';
 
@@ -17,6 +11,7 @@ interface inputProps extends overrideInputProps {
   labelStyle?: object;
   name?: string;
   onChange?: Function;
+  error?: boolean;
 }
 
 export const Input: React.FC<inputProps> = ({
@@ -26,6 +21,7 @@ export const Input: React.FC<inputProps> = ({
   labelStyle,
   name,
   onChange,
+  error,
   ...rest
 }) => {
   const handleChange = (text: string) => {
@@ -46,7 +42,7 @@ export const Input: React.FC<inputProps> = ({
         </Text>
       )}
       <TextInput
-        style={[styles.inputField, style]}
+        style={[styles.inputField, error ? {borderColor: 'red'} : {}, style]}
         value={value}
         onChangeText={handleChange}
         {...rest}

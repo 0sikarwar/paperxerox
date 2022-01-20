@@ -2,12 +2,10 @@ import React from 'react';
 import {View} from 'react-native';
 import Styles from './style';
 import {primaryColor, secondaryColor} from '../../styles/Color';
-import Footer from '../../components/Footer';
-import {Heading1, Text} from '../../components/NativeComponents/Text';
+import {Text} from '../../components/NativeComponents/Text';
 import Button from '../../components/NativeComponents/Button';
 import {useAppContext} from '../../context/AppContext';
 import {common} from '../commonInterfaces';
-import Header from '../../components/Header';
 
 interface accountScreenProps extends common {}
 const AccountScreen: React.FC<accountScreenProps> = props => {
@@ -44,7 +42,6 @@ const AccountScreen: React.FC<accountScreenProps> = props => {
           and <Text style={{color: primaryColor}}>Privacy Policy</Text>.
         </Text>
       </View>
-      <Footer />
     </View>
   );
 };
